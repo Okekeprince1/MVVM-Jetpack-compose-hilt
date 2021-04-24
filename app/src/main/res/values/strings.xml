@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVM recipe app</string>
+    <string name="order_now">ORDER NOW</string>
 </resources>
