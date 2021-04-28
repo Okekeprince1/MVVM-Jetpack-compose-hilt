@@ -30,7 +30,6 @@ class RecipeFragment : Fragment ( ) {
             setContent {
                 MaterialTheme {
                     Recipe()
-
                 }
             }
         }
