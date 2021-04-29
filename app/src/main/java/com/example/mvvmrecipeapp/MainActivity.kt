@@ -29,7 +29,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.navigation.fragment.NavHostFragment
-import com.example.mvvmrecipeapp.network.RecipeService
+import com.example.mvvmrecipeapp.network.responses.RecipeService
 import com.example.mvvmrecipeapp.ui.theme.MVVMRecipeAppTheme
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
@@ -55,7 +55,7 @@ class MainActivity : FragmentActivity() {
                 id = 584
             )
 
-            Log.i("MAIN ACTIVITY", "onCreate ${response.ingredients}")
+            Log.i("MAIN ACTIVITY", "onCreate ${response.publisher}")
         }
 
 
