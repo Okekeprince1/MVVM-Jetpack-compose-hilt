@@ -1,7 +1,7 @@
 package com.example.mvvmrecipeapp.di
 
 import android.content.Context
-import com.example.mvvmrecipeapp.BaseApplication
+import com.example.mvvmrecipeapp.presentation.BaseApplication
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,10 +19,5 @@ object AppModule {
         return app as BaseApplication
     }
 
-    @Singleton
-    @Provides
-    fun someRandomString() : String {
-        return "This is some random string Ha HILT WORKIN!!"
-    }
 
 }
