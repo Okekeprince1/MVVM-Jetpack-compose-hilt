@@ -15,7 +15,7 @@ class RecipeRepositoryImpl (
             query = query
         )
 
-        return mapper.toDomainList(response.result)
+        return mapper.toDomainList(response.results)
     }
 
     override suspend fun get(token: String, id: Int): Recipe {

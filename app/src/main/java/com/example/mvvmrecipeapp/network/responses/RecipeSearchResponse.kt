@@ -6,6 +6,6 @@ import java.util.*
 data class RecipeSearchResponse(
     val count : Int? = null,
     val next: String? = null,
-    val prev: String? = null,
-    val result: List<RecipeDto>
+    val previous: String? = null,
+    val results: List<RecipeDto>
 )

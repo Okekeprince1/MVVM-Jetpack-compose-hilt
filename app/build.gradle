@@ -71,4 +71,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
+    //Glide
+    implementation "com.google.accompanist:accompanist-glide:$glide_version"
+
 }
