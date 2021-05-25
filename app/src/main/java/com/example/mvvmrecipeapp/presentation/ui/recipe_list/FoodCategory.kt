@@ -1,5 +1,7 @@
 package com.example.mvvmrecipeapp.presentation.ui.recipe_list
 
+import android.util.Log
+
 enum class FoodCategory(val value: String){
     CHICKEN("Chicken"),
     BEEF("Beef"),
@@ -26,9 +28,13 @@ fun getAllFoodCategories() : List<FoodCategory> {
     )
 }
 
-//fun getFoodCategory(value: String) : FoodCategory?{
-//
-//    val map = getAllFoodCategories().
-//    //val map = FoodCategory.values().(FoodCategory::value)
-//    return map[value]
-//}
+fun getFoodCategory(value: String) : FoodCategory?{
+
+
+    val foodCategoriesMap = hashMapOf<String, FoodCategory>()
+
+    for (keys in getAllFoodCategories()){
+        foodCategoriesMap[keys.value] = keys
+    }
+    return foodCategoriesMap[value]
+}

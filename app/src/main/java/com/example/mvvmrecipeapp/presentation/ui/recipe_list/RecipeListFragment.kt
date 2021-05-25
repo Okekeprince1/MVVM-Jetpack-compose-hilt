@@ -30,6 +30,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.mvvmrecipeapp.R
 import com.example.mvvmrecipeapp.presentation.components.FoodCategoryChip
+import com.example.mvvmrecipeapp.presentation.components.SearchAppBar
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
 
@@ -64,68 +65,20 @@ fun RecipeList(
 ) {
 
     val recipes = viewModel.recipes.value
-    val searchInput = viewModel.query
+    val searchInput = viewModel.query.value
+    val selectedCategory = viewModel.selectedCategory.value
 
-    //Hide Keyboard
-    val focusManager = LocalFocusManager.current
+
 
     Column{
 
-        //Search bar
-        Surface (
-            modifier = Modifier
-                .fillMaxWidth(1f),
-            color = MaterialTheme.colors.background,
-            elevation = 8.dp
-        ){
-            Column {
-
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth(1f)
-                ) {
-                    TextField(
-                        modifier = Modifier
-                            .fillMaxWidth(0.9f)
-                            .padding(8.dp),
-                        value = searchInput.value,
-                        placeholder = { Text(text = "Search recipe...") },
-                        onValueChange =  { viewModel.onQueryChanged(it) },
-                        label = { Text(text = "Search")},
-                        keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Text,
-                            imeAction = ImeAction.Search
-                        ),
-                        leadingIcon = {
-                            Icon(Icons.Filled.Search, contentDescription = "Search")
-                        },
-                        keyboardActions = KeyboardActions(
-                            onSearch = {
-                                viewModel.newSearch(searchInput.value)
-                                focusManager.clearFocus()
-                            }
-                        ),
-                        textStyle = TextStyle(color = MaterialTheme.colors.primary),
-                    )
-                }
-                Row (
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceEvenly
-                ){
-                    for (category in getAllFoodCategories()) {
-                        FoodCategoryChip(
-                            category = category.value,
-                            onExecuteSearch = {
-                                viewModel.onQueryChanged(it)
-                                viewModel.newSearch(it)
-                            }
-                        )
-                    }
-                }
-
-            }
-
-        }
+        SearchAppBar(
+            searchInput = searchInput,
+            selectedCategory = selectedCategory,
+            onQueryChanged = viewModel::onQueryChanged,
+            onSelectedCategoryChanged = viewModel::onSelectedCategoryChanged,
+            onExecuteSearch = viewModel::newSearch
+        )
 
         //List of recipes
         LazyColumn(
