@@ -1,5 +1,6 @@
 package com.example.mvvmrecipeapp.presentation.ui.recipe_list
 
+import android.graphics.Camera
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.mvvmrecipeapp.R
+import com.example.mvvmrecipeapp.presentation.components.FoodCategoryChip
 import dagger.hilt.android.AndroidEntryPoint
 import org.w3c.dom.Text
 
@@ -106,12 +108,17 @@ fun RecipeList(
                         textStyle = TextStyle(color = MaterialTheme.colors.primary),
                     )
                 }
-                Row {
+                Row (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ){
                     for (category in getAllFoodCategories()) {
-                        Text(
-                            text = category.value,
-                            style = MaterialTheme.typography.body2,
-                            modifier = Modifier.padding(8.dp)
+                        FoodCategoryChip(
+                            category = category.value,
+                            onExecuteSearch = {
+                                viewModel.onQueryChanged(it)
+                                viewModel.newSearch(it)
+                            }
                         )
                     }
                 }
