@@ -15,6 +15,7 @@ import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ExperimentalComposeApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.platform.ComposeView
@@ -29,16 +30,17 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.example.mvvmrecipeapp.R
+import com.example.mvvmrecipeapp.presentation.components.CircularProgressBarIndicator
 import com.example.mvvmrecipeapp.presentation.components.FoodCategoryChip
 import com.example.mvvmrecipeapp.presentation.components.SearchAppBar
 import dagger.hilt.android.AndroidEntryPoint
-import org.w3c.dom.Text
 
 @AndroidEntryPoint
 class RecipeListFragment : Fragment() {
 
     private val viewModel : RecipeListViewModel by viewModels()
 
+    @ExperimentalComposeApi
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -58,6 +60,7 @@ class RecipeListFragment : Fragment() {
     }
 }
 
+@ExperimentalComposeApi
 @Composable
 fun RecipeList(
     findNavController: NavController,
@@ -80,6 +83,9 @@ fun RecipeList(
             onExecuteSearch = viewModel::newSearch
         )
 
+        CircularProgressBarIndicator(
+            isDisplaying = viewModel.loading.value
+        )
         //List of recipes
         LazyColumn(
             modifier = Modifier
