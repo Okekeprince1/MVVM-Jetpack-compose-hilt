@@ -1,4 +1,4 @@
-package com.example.mvvmrecipeapp
+package com.example.mvvmrecipeapp.presentation.ui.recipe
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -30,7 +30,6 @@ class RecipeFragment : Fragment ( ) {
             setContent {
                 MaterialTheme {
                     Recipe()
-
                 }
             }
         }

@@ -1,4 +1,4 @@
-package com.example.mvvmrecipeapp
+package com.example.mvvmrecipeapp.presentation.ui.recipe_list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,10 +16,24 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import com.example.mvvmrecipeapp.R
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class RecipeListFragment : Fragment() {
+
+    private val viewModel : RecipeListViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        println("RecipeListFragment : $viewModel")
+        println("RecipeListFragment : ${viewModel.getRepo()}")
+        println("RecipeListFragment : ${viewModel.getToken()}")
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
